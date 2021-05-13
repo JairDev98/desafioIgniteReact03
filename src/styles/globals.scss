@@ -1,7 +1,25 @@
+:root{
+  --title: #F8F8F8;
+  --subtitle: #D7D7D7;
+  --info: #BBBBBB;
+
+  --posts: #FF57B2;
+  --postsHover: #FFA230;
+
+  --backgound: #1A1D23;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Inter, sans-serif;
 }
 
-// TODO
+body{
+  background-color: var(--backgound);
+}
+
+button{
+  cursor: pointer;
+}

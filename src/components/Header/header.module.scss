@@ -1,1 +1,20 @@
-// TODO
+.containerHeader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerContainer{
+  width: 1120px;
+  height: 105px;
+  left: 160px;
+  top: 0px;
+
+  img{
+    position:absolute;
+    width: 238.62px;
+    height: 25.63px;
+    top: 40px;
+    left: 370px;
+  }
+}

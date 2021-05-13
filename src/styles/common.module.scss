@@ -1,1 +1,20 @@
-// TODO
+.inf{
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+
+  right: 62.43%;
+  margin-top: 2%;
+  font-size: 14px;
+  color:var(--info);
+  font-weight: 400px;
+  time{
+    margin-left: 8px;
+    margin-right: 2rem;
+  }
+  p{
+    font-size: 14px;
+    margin-left: 8px;
+    margin-right: 2rem;
+  }
+}
