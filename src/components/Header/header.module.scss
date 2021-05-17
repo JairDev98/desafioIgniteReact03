@@ -9,12 +9,18 @@
   height: 105px;
   left: 160px;
   top: 0px;
+  cursor: pointer;
 
-  img{
-    position:absolute;
-    width: 238.62px;
-    height: 25.63px;
-    top: 40px;
-    left: 370px;
-  }
+    img{
+      position:absolute;
+      width: 238.62px;
+      height: 25.63px;
+      top: 40px;
+      left: 370px;
+      transition: filter 0.2s;
+
+      &:hover{
+        filter: brightness(0.8);
+      }
+    }
 }

@@ -2,11 +2,10 @@ import { GetStaticProps } from 'next';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import Link from 'next/link';
 import Prismic from '@prismicio/client';
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 import Head from 'next/head';
+import ptBR from 'date-fns/locale/pt-BR';
+import { format } from 'date-fns';
 
-import { RichText } from 'prismic-dom';
 import { useState } from 'react';
 import { getPrismicClient } from '../services/prismic';
 
@@ -49,18 +48,11 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
     const newPosts = postsResults.results.map(post => {
       return {
         uid: post.uid,
-        first_publication_date: format(
-          new Date(post.first_publication_date),
-          'dd/MM/yyyy',
-          {
-            locale: ptBR,
-          }
-        ),
-
+        first_publication_date: post.first_publication_date,
         data: {
-          title: RichText.asText(post.data.title),
-          subtitle: RichText.asText(post.data.subtitle),
-          author: RichText.asText(post.data.author),
+          title: post.data.title,
+          subtitle: post.data.subtitle,
+          author: post.data.author,
         },
       };
     });
@@ -85,12 +77,11 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               <div className={commonStyles.inf}>
                 <FiCalendar />
                 <time>
-                  {new Date(post.first_publication_date).toLocaleDateString(
-                    'pt-br',
+                  {format(
+                    new Date(post.first_publication_date),
+                    'dd MMM yyyy',
                     {
-                      day: '2-digit',
-                      month: 'long',
-                      year: 'numeric',
+                      locale: ptBR,
                     }
                   )}
                 </time>
@@ -116,7 +107,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
   const postsResponse = await prismic.query(
-    [Prismic.predicates.at('document.type', 'posts')],
+    [Prismic.Predicates.at('document.type', 'post')],
     {
       pageSize: 1,
     }
@@ -125,17 +116,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const results = postsResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        'dd/MM/yyyy',
-        {
-          locale: ptBR,
-        }
-      ),
+      first_publication_date: post.first_publication_date,
       data: {
-        title: RichText.asText(post.data.title),
-        subtitle: RichText.asText(post.data.subtitle),
-        author: RichText.asText(post.data.author),
+        title: post.data.title,
+        subtitle: post.data.subtitle,
+        author: post.data.author,
       },
     };
   });
